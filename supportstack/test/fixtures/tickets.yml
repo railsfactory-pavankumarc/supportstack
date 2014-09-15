@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subject: MyString
+  message: MyString
+  active: false
+  department_id_id: 
+  priority_id_id: 
+  status_id_id: 
+
+two:
+  subject: MyString
+  message: MyString
+  active: false
+  department_id_id: 
+  priority_id_id: 
+  status_id_id: 
