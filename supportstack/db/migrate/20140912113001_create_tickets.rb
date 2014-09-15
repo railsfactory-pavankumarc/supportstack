@@ -4,10 +4,10 @@ class CreateTickets < ActiveRecord::Migration
       t.string :subject
       t.string :message
       t.boolean :active, :default => true
-      t.references :department_id, index: true
-      t.references :priority_id, index: true
-      t.references :status_id, index: true
-
+      t.references :department, index: true
+      t.references :priority, index: true
+      t.references :status, index: true,:default => 'pending'
+      t.references :user, index: true
       t.timestamps
     end
   end

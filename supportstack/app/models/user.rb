@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  belongs_to :departments
-  belongs_to :roles
+before_create 
+has_many :attachments, as: :attachable
+has_many :tickets
+  belongs_to :department
+  belongs_to :role
 end

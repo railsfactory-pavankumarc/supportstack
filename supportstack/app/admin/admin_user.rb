@@ -1,4 +1,7 @@
-ActiveAdmin.register AdminUser do
+#ActiveAdmin.register AdminUser 
+    ActiveAdmin.register AdminUser, :as => "ADMIN" do
+
+
 #config.filters = false
 permit_params :email, :password, :password_confirmation
 config.clear_action_items!
