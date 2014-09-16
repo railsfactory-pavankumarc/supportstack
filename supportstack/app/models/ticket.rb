@@ -9,6 +9,10 @@ class Ticket < ActiveRecord::Base
 
 	accepts_nested_attributes_for :attachment, allow_destroy: true
 
+	#validations
+    validates :department, :priority, :subject, :message, presence: true
+
+
 	#scopes
 	scope :active, ->{ where(active: true) }
     scope :inactive, ->{ where(active: false) }

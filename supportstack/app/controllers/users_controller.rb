@@ -4,7 +4,11 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    if (user_signed_in?) && (current_user.role.name == 'staff')
+      redirect_to staff_index_path
+    else
+      redirect_to client_index_path
+    end
   end
 
   # GET /users/1

@@ -37,7 +37,6 @@ ActiveAdmin.register User, :as => "client" do
       row :company_name
       row :email
       row :mobile_no
-      row :department
     end
   end
 
