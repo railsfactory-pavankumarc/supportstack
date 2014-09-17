@@ -25,8 +25,23 @@
                   <div class="nav-collapse subnav-collapse">
                     
                     <div class="pull-right">
-                      <% if user_signed_in? %>
                      
+                    <% if user_signed_in? %>
+                    <span style="background: #C8C8C8"> 
+                      <%= link_to "Home", '/' %> 
+                    </span>&nbsp;
+                    <span style="background: #C8C8C8"> 
+                      <%= link_to "Create ticket" %> &nbsp;
+                    </span>&nbsp;
+                    <span style="background: #C8C8C8"> 
+                      <%= link_to "News" %> &nbsp;
+                    </span>&nbsp;
+                    <span style="background: #C8C8C8"> 
+                      <%= link_to "Contact us" %> &nbsp;
+                    </span>&nbsp;
+
+
+
                    <% else %>
                       
                      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "navbar-search"}) do |f| %>

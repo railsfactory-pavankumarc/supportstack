@@ -1,14 +1,38 @@
 class ClientController < ApplicationController
-  before_action :authenticate_user!
-	def index
-		
-	end
 
-	def destroy
-    @client.destroy
-    respond_to do |format|
-      format.html { redirect_to new_user_session_path, notice: 'client was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+	def index
+    @clients = User.all
   end
+
+
+  def new
+    @clients = User.new
+  end
+
+  def create
+    @clients = User.new(ticket_params)
+
+      respond_to do |format|
+      if @clients.save
+          format.html { redirect_to @clients, notice: 'User was successfully created.' }
+          format.json { render :show, status: :created, location: @clients }
+        else
+          format.html { render :new }
+          format.json { render json: @clients.errors, status: :unprocessable_entity }
+        end
+      end
+  end
+
+  def update
+      respond_to do |format|
+        if @clients.update(ticket_params)
+          format.html { redirect_to @clients, notice: 'User was successfully updated.' }
+          format.json { render :show, status: :ok, location: @clients }
+        else
+          format.html { render :edit }
+          format.json { render json: @clients.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
 end

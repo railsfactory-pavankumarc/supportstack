@@ -65,15 +65,15 @@ ActiveRecord::Schema.define(version: 20140916052356) do
   end
 
   create_table "comments", force: true do |t|
-    t.integer  "user_id_id"
-    t.integer  "ticket_id_id"
+    t.integer  "user_id"
+    t.integer  "ticket_id"
     t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["ticket_id_id"], name: "index_comments_on_ticket_id_id", using: :btree
-  add_index "comments", ["user_id_id"], name: "index_comments_on_user_id_id", using: :btree
+  add_index "comments", ["ticket_id"], name: "index_comments_on_ticket_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "departments", force: true do |t|
     t.string   "name"
