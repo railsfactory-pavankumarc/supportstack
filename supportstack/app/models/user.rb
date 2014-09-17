@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   
     devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
- 	#before_create :check_user_type
-
+    attr_accessor :client
+    # before_create :set_role
+    
     #accociations
 	has_many :attachments, as: :attachable
 	has_many :tickets
@@ -10,12 +11,9 @@ class User < ActiveRecord::Base
     belongs_to :role
 
     #validations
-    validates :first_name, :email, :mobile_no, :password_confirmation, presence: true
-
-    
-    validate :email, uniqueness: true
-    #validates :company_name, presence: true,:if User.role_name == 'client'
-    #validates :department_id, presence:true,:if => Proc.new{|g| g.role.name == "staff"}
+    validates :first_name, :mobile_no, presence: true
+    validates_presence_of :company_name, :if => Proc.new {|user| user.client}
+    #validates_presence_of :department_id, :if => Proc.new {|user| !user.client}
 
     #scopes																																																																																																																																																																																												
     scope :active, ->{ where(active: true) }
@@ -28,16 +26,8 @@ class User < ActiveRecord::Base
     scope :inactive_client, ->{ inactive.client }
    
 
+    # def set_role
+    #   self.role = Role.find_by(id: role_id) || Role.find_by(name: "client")
+    # end
 
-
-
-   # private
-   #  def check_user_type
-   #      user_type = self.responds_to?(role_id) ? 1 : 2
-   #      if user_type == 1
-   #          validates_presence_of :department 
-   #      else 
-   #          validates_presence_of :company_name
-   #      end
-   #  end
 end

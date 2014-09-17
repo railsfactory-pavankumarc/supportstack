@@ -1,6 +1,6 @@
 ActiveAdmin.register User, :as => "client" do
 
-  permit_params :first_name, :last_name, :department_id, :role_id, :company_name, :mobile_no, :fax, :email, :password, :password_confirmation
+  permit_params :first_name, :last_name, :department_id, :role_id, :company_name, :mobile_no, :fax, :email, :password, :password_confirmation, :client
 
   scope :active_client
   scope :inactive_client
@@ -21,6 +21,7 @@ ActiveAdmin.register User, :as => "client" do
       f.input :first_name
       f.input :last_name
       f.input :role_id, as: :hidden, value: Role.find_by(name: "client").try(:id)
+      f.input :client, as: :hidden, value: true
       f.input :company_name
       f.input :mobile_no
       f.input :fax
