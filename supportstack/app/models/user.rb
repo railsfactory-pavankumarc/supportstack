@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-    devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+    devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
     attr_accessor :client
     after_create :set_role
     

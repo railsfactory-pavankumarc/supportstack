@@ -1,5 +1,5 @@
 class Ticket < ActiveRecord::Base
-	
+	after_create :set_status
 	#associations
 	has_one :attachment, as: :attachable
 	belongs_to :department
@@ -21,4 +21,8 @@ class Ticket < ActiveRecord::Base
 	scope :waiting, ->{ joins(:status).where('statuses.name =?', 'awaiting for users reply') }
 	scope :closed, ->{ joins(:status).where('statuses.name =?', 'closed') }
 
+    def set_status
+        @status = Status.find_by(name: "pending")
+        self.update_attributes(status_id: @status.id)
+     end
 end
