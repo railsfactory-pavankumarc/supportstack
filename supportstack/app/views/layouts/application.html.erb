@@ -23,7 +23,23 @@
                   </a>
                   <a class="brand" href="/">SupportStack</a>
                   <div class="nav-collapse subnav-collapse">
-                    
+                  
+                  <% if user_signed_in? %>
+                  <ul class="nav">
+                      <li class="divider-vertical"></li>
+                      <a class="brand" href="/users/edit" >My Profile</a>
+                      <div class="nav-collapse subnav-collapse">
+                    </ul>
+
+                  <% else %>
+
+                   <ul class="nav">
+                      <li class="divider-vertical"></li>
+                      <a class="brand" href="/users/sign_up" >New user</a>
+                      <div class="nav-collapse subnav-collapse">
+                    </ul>
+                  <% end %>
+
                     <div class="pull-right">
                      
                     <% if user_signed_in? %>
@@ -39,7 +55,9 @@
                     <span style="background: #C8C8C8"> 
                       <%= link_to "Contact us" %> &nbsp;
                     </span>&nbsp;
-
+                    <span style="background: #C8C8C8"> 
+                      <%= link_to "Logout", destroy_user_session_path, method: :delete %> &nbsp;
+                    </span>&nbsp;
 
 
                    <% else %>

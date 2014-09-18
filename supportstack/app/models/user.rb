@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   
     devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
     attr_accessor :client
-    # before_create :set_role
+    after_create :set_role
     
     #accociations
 	has_many :attachments, as: :attachable
@@ -26,8 +26,9 @@ class User < ActiveRecord::Base
     scope :inactive_client, ->{ inactive.client }
    
 
-    # def set_role
-    #   self.role = Role.find_by(id: role_id) || Role.find_by(name: "client")
-    # end
+    def set_role
+        @role = Role.find_by(name: "client")
+        self.update_attributes(role_id: @role.id)
+     end
 
 end
