@@ -1,0 +1,96 @@
+<div class="navbar navbar-inverse" style="position: static;">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".subnav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="/client">SupportStack</a>
+     
+        <div class="nav-collapse subnav-collapse">
+          <ul class="nav">
+            <li class="divider-vertical"></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle " data-toggle="dropdown">Tickets <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="">My tickets: <span class="myBadge"><%=client_ticket_count%></span></a></li>
+              <li class="divider"></li>               
+          </ul>
+            </li>
+          <li class="divider-vertical"></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Create A New Ticket <b class="caret"></b></a>
+            <ul class="dropdown-menu paddingLR">
+              <li class="myForm pull-left">
+              <p></p>
+              
+              <%= form_for(:ticket, url: tickets_path, html: {class: "form-inline navbar-search"}) do |f| %>  
+                <div class="control-group paddingLR">
+                  <label class="control-label" for="inputPassword">Subject</label>
+                  <div class="">
+                    <%= f.text_field :subject, autofocus: true, class: "input-block-level" %>
+                  </div>   
+                </div>
+                
+                <div class="control-group paddingLR">
+                  <label class="control-label" for="inputPassword">Message</label>
+                  <div class="">
+                  <%= f.text_area :message, class: "input-block-level" %>  
+                  </div>
+                </div>
+                                        
+                <div class="control-group paddingLR">
+                  <label class="control-label" for="inputPassword">Department</label>
+                  <div class="">
+                    <% @dept = Department.all %>
+                    <%=f.select :department_id, options_for_select(@dept.map{ |c| [c.name, c.id]}) %>
+                  </div>
+                </div>
+                                     
+                <div class="control-group paddingLR">
+                  <label class="control-label" for="inputPassword">Priority</label>
+                  <div class="">
+                    <% @priority = Priority.all %>
+                    <%=f.select :priority_id, options_for_select(@priority.map{ |d| [d.name, d.id]}) %>
+                  </div>
+                </div>
+                                      
+                <div class="control-group">
+                  <div class="paddingLR">
+                    <button type="submit" name="sendTicket" class="btn">Create</button>
+                    <span class="pull-right" id="error" style="color: #F33; padding-top:10px;"></span>
+                  </div>
+                </div>
+              <% end %>
+              <p></p> 
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <p class="navbar-text pull-right">
+        <a href="/users/edit" class="btn btn-large btn-inverse ">Welcome <%= current_user.first_name %> </a>
+        
+        <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn btn-large btn-danger " %> 
+      </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+          
+            
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+<div class="navbar navbar-inverse" style="position: static;">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".subnav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="/staff">SupportStack</a>
+      <a class="brand marginTop" href="http://www.myflashlab.com/showcase/PHP_TICKET_SYSTEM/preview/"><i class="icon-home icon-white"></i></a>
+      <div class="nav-collapse subnav-collapse">
+        <ul class="nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle " data-toggle="dropdown">Tickets <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="">All tickets: <span class="myBadge">25</span></a></li>
+              <li><a href="">Assigned tickets: <span class="myBadge">7</span></a></li>
+              <li><a href="">Pending tickets: <span class="myBadge">14</span></a></li>
+              <li><a href="">Completed tickets: <span class="myBadge">2</span></a></li>
+              <li><a href="">Awaiting for user reply tickets: <span class="myBadge">2</span></a></li>
+            </li>
+          </ul>
+        </li>
+      </ul>                    
+      <p class="navbar-text pull-right">
+        <a href="/users/edit" class="btn btn-large btn-inverse ">Welcome <%= current_user.first_name %> </a>
+        
+        <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "btn btn-large btn-danger " %> 
+      </p>
+    </div>
+  </div>
+</div>
+            </div>
+           
