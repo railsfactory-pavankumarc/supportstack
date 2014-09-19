@@ -2,6 +2,8 @@ class ClientController < ApplicationController
 
 	def index
     @clients = User.all
+    @tickets = Ticket.where(user_id: current_user.id).all
+   
   end
 
 

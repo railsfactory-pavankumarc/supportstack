@@ -13,7 +13,8 @@ class TicketsController < ApplicationController
 	end
 
 	def create
-		@tickets = Ticket.new(ticket_params)      
+		@tickets = Ticket.new(ticket_params)
+    @tickets.user_id = current_user.id      
     	respond_to do |format|
     	if @tickets.save
         	format.html { redirect_to @tickets, notice: 'Ticket was successfully created.' }
