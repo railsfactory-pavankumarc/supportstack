@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :tickets
   resources :staff
   resources :client
-
+  resources :comments
   root 'home#index'
 
   
