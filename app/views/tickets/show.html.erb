@@ -1,3 +1,102 @@
+<article class="container" style="margin-top:-18px;">
+						<section class="well well-small mePadd"><h2 class="meFont" style="padding-bottom:30px;"><span class="icon-search meMarg"></span> <%=@tickets.subject.upcase%></h2>
+			        	<div class="resTable2">
+			            	<h4 class="alert alert-heading" style="font-style: italic;">Date modified: <span class="spnPadding"><%= @tickets.updated_at.strftime(" %d/%m/%Y") %>  </span> 
+			            	Time modified: <span class="spnPadding"><%= @tickets.updated_at.strftime("%H:%M") %>  </span>
+			                <span class="floatR">
+			                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#myModal"> Reply</button>
+			                <a href=""><button class="btn btn-danger" type="button"> Close</button></a>
+			                </span>
+			                </h4>
+			                
+<% if @tickets.status.name == "pending" %>
+	<% @class = "badge badge-inverse" %>
+<% elsif @tickets.status.name == "await_reply" %> 
+   	<% @class = "badge badge-info"%>
+<%else%>
+	<%@class = "badge badge-success"%>
+<%end %>
+
+			                <div class="myTable4">
+			                    <table class="table table-striped table-condensed">
+			                      <tbody><tr class="tableFont">
+			                        <td>ID</td>
+			                        <td>Department</td>
+			                        <td>Status</td>
+			                        <td>Priority</td>
+			                      </tr>
+			                      <tr class="tableFont2">
+			                        <td><%=@tickets.id%></td>
+			                        <td>
+			                        	<%=@tickets.department.name%>
+			                        </td>
+			                        <td><center><div class="<%=@class%>" style="width:65px;"> <%=@tickets.status.name%></div></center></td>
+			                        <td><%=@tickets.priority.name%></td>
+			                      </tr>
+			                    </tbody></table>
+			                </div>
+			                <h4 class="alert " style="font-style: italic;">Description: <span class="spnPadding"><%= @tickets.message %></span></h4>
+			            </div>
+			     <% @comments.each do |c|%>
+			            <hr> <div class=""><h2 class="meFont" style="padding-bottom:30px;"> Conversation:</h2>
+			            <li class="alert alert-user meUs">
+								<img src="Ticket-Show_files/8735be3fc8240d1d815dc94c47246d49.jpeg" class="img-circle" height="50" width="50">
+								<span class="tableFont"> User:</span>
+								<span class="tableFont2" style="background-color:transparent;">User Name</span>
+								<h6 class="fk">Posted on: <span><%= c.created_at.strftime(" %d/%m/%Y, %H:%M") %></span></h6>
+								<div class="alert alert-user meUser">
+								   <%= c.comment%>.</div>
+                     		  </li>
+                    <%end%>
+
+
+
+						 </div>
+          			 </section>
+				 <div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><!--Modal Starts-->
+		        	<div class="modal-header">
+		            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">\D7</button>
+		            <h3 id="myModalLabel">Send message</h3>
+		            </div>
+		            <%= form_for(:comment, url: comments_path) do |f| %>
+		            <div class="modal-body">
+		            
+		            <%= f.text_area :comment, class: "modalTextarea" %>
+		            </div>
+		            <div class="modal-footer">
+		            
+		            <%= f.hidden_field :ticket_id, :value => @tickets.id%>
+		            <button class="btn btn-success" type="submit" ><span class="icon-arrow-right icon-white"></span> Send</button>
+		            <button class="btn" data-dismiss="modal" aria-hidden="true"><span class="icon-thumbs-down"></span> Cancel</button>
+		            </div>
+		            <%end%>
+       			 </div><!--Modal Ends--> <!--Details Ends-->
+			</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <p>

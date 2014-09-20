@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
     after_create :set_role
     
     #accociations
+    has_many :comment, :as => :commentable
 	has_many :attachments, as: :attachable
 	has_many :tickets
     belongs_to :department

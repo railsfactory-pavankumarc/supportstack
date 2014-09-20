@@ -3,6 +3,7 @@ class TicketsController < ApplicationController
 
 	def index
 		@tickets = Ticket.all
+    @comment = Comment.all
 	end
 
 
@@ -25,7 +26,10 @@ class TicketsController < ApplicationController
       	end
     	end
 	end
-
+  def show
+    
+    @comments = Comment.where(:ticket_id => params[:id]).all
+  end
 	def update
     	respond_to do |format|
       	if @tickets.update(ticket_params)

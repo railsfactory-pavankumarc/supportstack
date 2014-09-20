@@ -1,6 +1,8 @@
 class Ticket < ActiveRecord::Base
 	after_create :set_status
+	
 	#associations
+	has_many :comment, :as => :commentable
 	has_one :attachment, as: :attachable
 	belongs_to :department
 	belongs_to :priority
