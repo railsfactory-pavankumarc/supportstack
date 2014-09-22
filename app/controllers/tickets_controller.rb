@@ -1,6 +1,8 @@
 class TicketsController < ApplicationController
 	before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
+
+
 	def index
 		@tickets = Ticket.all
     @comment = Comment.all
@@ -29,13 +31,18 @@ class TicketsController < ApplicationController
   def show
     
     @comments = Comment.where(:ticket_id => params[:id]).all
-   
+    
 
-
-
+    
   end
 	def update
-    	respond_to do |format|
+    	
+
+      
+
+
+      respond_to do |format|
+
       	if @tickets.update(ticket_params)
         	format.html { redirect_to @tickets, notice: 'Ticket was successfully updated.' }
         	format.json { render :show, status: :ok, location: @tickets }

@@ -2,10 +2,11 @@ class StaffController < ApplicationController
 	
 	def index
     @status = params[:status_name]
+  
     @t = []
     @ticket = Ticket.all
     @ticket.each do |s|
-      if s.department_id == current_user.department_id
+      if s.department_id == current_user.department_id 
         if @status == s.status.name
           @t << s
         elsif @status == "assigned_tickets"

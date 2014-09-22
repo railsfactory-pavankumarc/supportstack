@@ -1,7 +1,11 @@
 class CommentsController < ApplicationController
-
+  #before_create :update_status
 	before_action :set_comment, only: [:show, :edit, :update, :destroy]
-	def index 
+	
+
+
+
+  def index 
 		@comment = Comment.all
 	end
 
@@ -23,11 +27,20 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
+     @comment = Comment.new(comment_params)
      @comment.user_id = current_user.id
-     
+    
+
     respond_to do |format|
       if @comment.save
+        @id = @comment.ticket_id
+        @tc = Ticket.find_by_id(@id)
+        if @tc.status.name == "closed"
+
+        else
+          @sid = Status.find_by_name("awaiting for users reply")
+          @tc.update_attributes(:status_id => @sid.id)
+        end
         format.html { redirect_to client_index_path }
         format.json { render :show, status: :created, location: @comment }
       else
@@ -71,4 +84,14 @@ class CommentsController < ApplicationController
     def comment_params
       params.require(:comment).permit(:comment,:ticket_id)
     end
+
+# protected
+
+#   def update_status
+#     @tid = params[:ticket_id]
+#     @ticket = Ticket.find_by_id(@tid)
+#     @status = Status.find_by_name("awaiting for users reply")
+#     @ticket.update_attributes(status_id: @status.id)
+#   end
+
 end

@@ -3,10 +3,20 @@
        	<div class="resTable2">
            	<h4 class="alert alert-heading" style="font-style: italic;">Date modified: <span class="spnPadding"><%= @tickets.updated_at.strftime(" %d/%m/%Y") %>  </span> 
            	Time modified: <span class="spnPadding"><%= @tickets.updated_at.strftime("%H:%M") %>  </span>
+            
+           	<% if @tickets.status.name == "closed" %>
+           	<span class="floatR">
+        	    <a href=""><button class="btn btn-danger" type="button"> Reopen</button></a>
+ 	        </span>
+           	<% else %>
             <span class="floatR">
         	    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#myModal"> Reply</button>
-    	        <a href=""><button class="btn btn-danger" type="button"> Close</button></a>
+    	        
+    	        <%= link_to "Close", ticket_path(status_name: "closed"), class: 'btn btn-danger' %>
+
  	        </span>
+            <% end %>
+
             </h4>
 		                
 <% if @tickets.status.name == "pending" %>
@@ -30,7 +40,7 @@
 			                        <td>
 			                        	<%=@tickets.department.name%>
 			                        </td>
-			                        <td><center><div class="<%=@class%>" style="width:65px;"> <%=@tickets.status.name%></div></center></td>
+			                        <td> <%=@tickets.status.name%></td>
 			                        <td><%=@tickets.priority.name%></td>
 			                      </tr>
 			                    </tbody></table>
@@ -40,6 +50,9 @@
 			     
 			            <hr> <div class=""><h2 class="meFont" style="padding-bottom:30px;"> Conversation:</h2>
 			            <% @comments.each do |c|%>
+			            <% @user_id = c.user_id %>   
+        <%@user = User.find_by_id(@user_id)%>
+        <%@role_name = @user.role.name %>
 			            <li class="alert alert-user meUs">
 								<img src="Ticket-Show_files/8735be3fc8240d1d815dc94c47246d49.jpeg" class="img-circle" height="50" width="50">
 								<span class="tableFont"> User:</span>
