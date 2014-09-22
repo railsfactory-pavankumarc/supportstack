@@ -1,14 +1,14 @@
 <article class="container" style="margin-top:-18px;">
-						<section class="well well-small mePadd"><h2 class="meFont" style="padding-bottom:30px;"><span class="icon-search meMarg"></span> <%=@tickets.subject.upcase%></h2>
-			        	<div class="resTable2">
-			            	<h4 class="alert alert-heading" style="font-style: italic;">Date modified: <span class="spnPadding"><%= @tickets.updated_at.strftime(" %d/%m/%Y") %>  </span> 
-			            	Time modified: <span class="spnPadding"><%= @tickets.updated_at.strftime("%H:%M") %>  </span>
-			                <span class="floatR">
-			                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#myModal"> Reply</button>
-			                <a href=""><button class="btn btn-danger" type="button"> Close</button></a>
-			                </span>
-			                </h4>
-			                
+	<section class="well well-small mePadd"><h2 class="meFont" style="padding-bottom:30px;"><span class="icon-search meMarg"></span> <%=@tickets.subject.upcase%></h2>
+       	<div class="resTable2">
+           	<h4 class="alert alert-heading" style="font-style: italic;">Date modified: <span class="spnPadding"><%= @tickets.updated_at.strftime(" %d/%m/%Y") %>  </span> 
+           	Time modified: <span class="spnPadding"><%= @tickets.updated_at.strftime("%H:%M") %>  </span>
+            <span class="floatR">
+        	    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#myModal"> Reply</button>
+    	        <a href=""><button class="btn btn-danger" type="button"> Close</button></a>
+ 	        </span>
+            </h4>
+		                
 <% if @tickets.status.name == "pending" %>
 	<% @class = "badge badge-inverse" %>
 <% elsif @tickets.status.name == "await_reply" %> 
@@ -37,12 +37,13 @@
 			                </div>
 			                <h4 class="alert " style="font-style: italic;">Description: <span class="spnPadding"><%= @tickets.message %></span></h4>
 			            </div>
-			     <% @comments.each do |c|%>
+			     
 			            <hr> <div class=""><h2 class="meFont" style="padding-bottom:30px;"> Conversation:</h2>
+			            <% @comments.each do |c|%>
 			            <li class="alert alert-user meUs">
 								<img src="Ticket-Show_files/8735be3fc8240d1d815dc94c47246d49.jpeg" class="img-circle" height="50" width="50">
 								<span class="tableFont"> User:</span>
-								<span class="tableFont2" style="background-color:transparent;">User Name</span>
+								<span class="tableFont2" style="background-color:transparent;"><%=   @role_name%></span>
 								<h6 class="fk">Posted on: <span><%= c.created_at.strftime(" %d/%m/%Y, %H:%M") %></span></h6>
 								<div class="alert alert-user meUser">
 								   <%= c.comment%>.</div>
@@ -72,52 +73,3 @@
 		            <%end%>
        			 </div><!--Modal Ends--> <!--Details Ends-->
 			</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<p>
-  <strong>Subject:</strong>
-  <%= @tickets.subject %>
-</p>
-
-<p>
-  <strong>Message:</strong>
-  <%= @tickets.message%>
-</p>
-
-<p>
-  <strong>Department:</strong>
-  <%= @tickets.department.name %>
-</p>
-
-<p>
-  <strong>Priority:</strong>
-  <%= @tickets.priority.name %>
-</p>
-
-<%= link_to 'Edit', edit_ticket_path(@tickets) %> |
-<%= link_to 'Back', tickets_path %>

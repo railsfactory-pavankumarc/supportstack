@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
   #before_action :admin_navication
 
-  helper_method :current_user_role, :current_client, :current_staff, :client_ticket_count
+  helper_method :current_user_role, :current_client, :current_staff, :client_ticket_count, :user_role
     
     def current_user_role
       @user = current_user.role
@@ -23,6 +23,14 @@ class ApplicationController < ActionController::Base
       @tickets.count
     end
 
+    def user_role
+      @comments = Comment.all
+      @comment.each do |c|
+        @user_id = c.user_id    
+        @user = User.find_by_id(@user_id)
+        @role_name = @user.role.name 
+      end
+    end
 	
 	protected
 	def configure_permitted_parameters

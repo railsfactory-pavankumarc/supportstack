@@ -14,11 +14,10 @@
             <a href="#" class="dropdown-toggle " data-toggle="dropdown">Tickets <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li class="divider"></li>
-              <li><a href="">All tickets: <span class="myBadge">25</span></a></li>
-              <li><a href="">Assigned tickets: <span class="myBadge">7</span></a></li>
-              <li><a href="">Pending tickets: <span class="myBadge">14</span></a></li>
-              <li><a href="">Completed tickets: <span class="myBadge">2</span></a></li>
-              <li><a href="">Awaiting for user reply tickets: <span class="myBadge">2</span></a></li>
+              <li><%= link_to "Assigned tickets", staff_index_path(status_name: "assigned_tickets"), class: 'control-label' %></li>
+              <li><%= link_to "Pending tickets", staff_index_path(status_name: "pending"), class: 'control-label' %></li>
+              <li><%= link_to "Awaiting for user reply tickets", staff_index_path(status_name: "awaiting for users reply"), class: 'control-label' %></li>
+              <li><%= link_to "Completed tickets", staff_index_path(status_name: "closed"), class: 'control-label' %></li>
             </li>
           </ul>
         </li>
@@ -31,5 +30,5 @@
     </div>
   </div>
 </div>
-            </div>
+</div>
            

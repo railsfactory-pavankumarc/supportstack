@@ -14,6 +14,5 @@ Role.find_or_create_by(name: "staff")
 Role.find_or_create_by(name: "client")
 
 Status.find_or_create_by(name: "pending")
-Status.find_or_create_by(name: "open")
 Status.find_or_create_by(name: "awaiting for users reply")
 Status.find_or_create_by(name: "closed")

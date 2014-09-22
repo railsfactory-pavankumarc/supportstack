@@ -29,6 +29,10 @@ class TicketsController < ApplicationController
   def show
     
     @comments = Comment.where(:ticket_id => params[:id]).all
+   
+
+
+
   end
 	def update
     	respond_to do |format|
