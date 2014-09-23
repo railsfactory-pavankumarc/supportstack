@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+	
+
 	before_action :navication, only: :index
 	def index
 	end
@@ -12,4 +14,7 @@ class HomeController < ApplicationController
        	 	redirect_to client_index_path
 		end 
 	end
+
+
+
 end

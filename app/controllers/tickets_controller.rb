@@ -1,7 +1,6 @@
 class TicketsController < ApplicationController
+  before_action :authenticate_user!
 	before_action :set_ticket, only: [:show, :edit, :update, :destroy]
-
-
 
 	def index
 		@tickets = Ticket.all
@@ -59,8 +58,6 @@ class TicketsController < ApplicationController
     end
 
     def ticket_params
-    	params.require(:ticket).permit(:subject, :message, :active, :department_id, :priority_id, :status_id )
+    	params.require(:ticket).permit(:subject, :message, :active, :department_id, :priority_id, :status_id, attachment_attributes: [:attachment]  )
     end
-
-
 end

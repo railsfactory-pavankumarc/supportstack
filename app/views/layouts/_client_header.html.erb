@@ -60,7 +60,7 @@
                  <div class="control-group paddingLR">
                   <label class="control-label" for="inputPassword">Attachment</label>
                   <div class="">
-                    <%= f.fields_for :attachment, (Attachment.new) do |attachment_form| %>
+                    <%= f.fields_for :attachment_attributes, Attachment.new do |attachment_form| %>
      
                     <%= attachment_form.file_field :attachment %>
                     <%end%>

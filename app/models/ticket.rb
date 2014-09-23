@@ -9,7 +9,7 @@ class Ticket < ActiveRecord::Base
 	belongs_to :status
 	belongs_to :user
 
-	#accepts_nested_attributes_for :attachment, allow_destroy: true
+	accepts_nested_attributes_for :attachment, allow_destroy: true
 
 	#validations
     validates :department, :priority, :subject, :message, presence: true

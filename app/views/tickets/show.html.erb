@@ -5,16 +5,27 @@
            	Time modified: <span class="spnPadding"><%= @tickets.updated_at.strftime("%H:%M") %>  </span>
             
            
+           	<% if current_user_role.name == "client" %>
+           		<% if @tickets.status.name == "closed" %>
+           			<span class="floatR">
+        	    		<%= link_to "Reopen", ticket_path, class: 'btn btn-danger',method: :put %>
+ 	        		</span>
+           		<% else %>
+            		<span class="floatR">
+        	    		<button class="btn btn-success" type="button" data-toggle="modal" data-target="#myModal"> Reply</button>
+    	            	<%= link_to "Close", ticket_path, class: 'btn btn-danger',method: :put %>
+	 	        	</span>
+            	<% end %>
 
-           	<% if @tickets.status.name == "closed" %>
-           		<span class="floatR">
-        	    	<%= link_to "Reopen", ticket_path, class: 'btn btn-danger',method: :put %>
- 	        	</span>
-           	<% else %>
-            	<span class="floatR">
-        	    	<button class="btn btn-success" type="button" data-toggle="modal" data-target="#myModal"> Reply</button>
-    	            <%= link_to "Close", ticket_path, class: 'btn btn-danger',method: :put %>
-	 	        </span>
+            <% elsif current_user_role.name == "staff" %>
+
+            	<% if @tickets.status.name == "closed" %>
+           		
+           		<% else %>
+            		<span class="floatR">
+        	    		<button class="btn btn-success" type="button" data-toggle="modal" data-target="#myModal"> Reply</button>
+	 	        	</span>
+            	<% end %>
             <% end %>
 
             </h4>
