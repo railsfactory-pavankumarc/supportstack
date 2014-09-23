@@ -56,6 +56,18 @@
                     <%=f.select :priority_id, options_for_select(@priority.map{ |d| [d.name, d.id]}) %>
                   </div>
                 </div>
+
+                 <div class="control-group paddingLR">
+                  <label class="control-label" for="inputPassword">Attachment</label>
+                  <div class="">
+                    <%= f.fields_for :attachment, (Attachment.new) do |attachment_form| %>
+     
+                    <%= attachment_form.file_field :attachment %>
+                    <%end%>
+                  </div>
+                </div>
+
+
                                       
                 <div class="control-group">
                   <div class="paddingLR">

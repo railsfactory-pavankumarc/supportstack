@@ -4,28 +4,21 @@
            	<h4 class="alert alert-heading" style="font-style: italic;">Date modified: <span class="spnPadding"><%= @tickets.updated_at.strftime(" %d/%m/%Y") %>  </span> 
            	Time modified: <span class="spnPadding"><%= @tickets.updated_at.strftime("%H:%M") %>  </span>
             
-           	<% if @tickets.status.name == "closed" %>
-           	<span class="floatR">
-        	    <a href=""><button class="btn btn-danger" type="button"> Reopen</button></a>
- 	        </span>
-           	<% else %>
-            <span class="floatR">
-        	    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#myModal"> Reply</button>
-    	        
-    	        <%= link_to "Close", ticket_path(status_name: "closed"), class: 'btn btn-danger' %>
+           
 
- 	        </span>
+           	<% if @tickets.status.name == "closed" %>
+           		<span class="floatR">
+        	    	<%= link_to "Reopen", ticket_path, class: 'btn btn-danger',method: :put %>
+ 	        	</span>
+           	<% else %>
+            	<span class="floatR">
+        	    	<button class="btn btn-success" type="button" data-toggle="modal" data-target="#myModal"> Reply</button>
+    	            <%= link_to "Close", ticket_path, class: 'btn btn-danger',method: :put %>
+	 	        </span>
             <% end %>
 
             </h4>
-		                
-<% if @tickets.status.name == "pending" %>
-	<% @class = "badge badge-inverse" %>
-<% elsif @tickets.status.name == "await_reply" %> 
-   	<% @class = "badge badge-info"%>
-<%else%>
-	<%@class = "badge badge-success"%>
-<%end %>
+
 
 			                <div class="myTable4">
 			                    <table class="table table-striped table-condensed">

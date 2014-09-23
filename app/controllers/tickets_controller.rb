@@ -29,29 +29,28 @@ class TicketsController < ApplicationController
     	end
 	end
   def show
-    
     @comments = Comment.where(:ticket_id => params[:id]).all
-    
 
-    
   end
+
+
 	def update
-    	
 
-      
+    @tid = params[:id]
+    @ticket = Ticket.find_by_id(@tid)
+    if (@ticket.status.name == "pending") || (@ticket.status.name == "awaiting for users reply")
+      @sid = Status.find_by_name("closed")
+      @ticket.update_attributes(:status_id => @sid.id)
+    elsif (@ticket.status.name == "closed")
+      @sid = Status.find_by_name("pending")
+      @ticket.update_attributes(:status_id => @sid.id)
+    end
+    respond_to do |format|
+      format.html { redirect_to @tickets, notice: 'Ticket was successfully updated.' }   
+    end
+  end
 
 
-      respond_to do |format|
-
-      	if @tickets.update(ticket_params)
-        	format.html { redirect_to @tickets, notice: 'Ticket was successfully updated.' }
-        	format.json { render :show, status: :ok, location: @tickets }
-      	else
-        	format.html { render :edit }
-        	format.json { render json: @tickets.errors, status: :unprocessable_entity }
-      	end
-    	end
-  	end
 
   	private
   
@@ -60,7 +59,7 @@ class TicketsController < ApplicationController
     end
 
     def ticket_params
-    	params.require(:ticket).permit(:subject, :message, :active, :department_id, :priority_id)
+    	params.require(:ticket).permit(:subject, :message, :active, :department_id, :priority_id, :status_id )
     end
 
 
