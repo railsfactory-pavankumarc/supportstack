@@ -8,7 +8,6 @@ ActiveAdmin.register User, :as => "client" do
   index do
     selectable_column
     column :first_name
-    column :department
     column :company_name
     column :mobile_no
     column :email
