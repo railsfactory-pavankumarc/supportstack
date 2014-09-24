@@ -51,7 +51,8 @@
 			                </div>
 			                <h4 class="alert " style="font-style: italic;">Description: <span class="spnPadding"><%= @tickets.message %></span></h4>
 			                <% if @tickets.attachment.blank? %>
-			                <%#= link_to "Download", @tickets.attachment.attachments.url(:original, false) %>
+			                <% else %>
+			                <%= link_to "Click here to download the attachment", @tickets.attachment.attachment.url(:original, false) %>
 			            	<%end%>
 			            </div>
 			     
@@ -70,6 +71,11 @@
 								<h6 class="fk">Posted on: <span><%= c.created_at.strftime(" %d/%m/%Y, %H:%M") %></span></h6>
 								<div class="alert alert-user meUser">
 								   <%= c.comment%>.</div>
+								   <% if c.attachment.blank? %>
+
+			                <% else %>
+			                <%= link_to "Click here to download the attachment", c.attachment.attachment.url(:original, false) %>
+			            	<%end%>
                      		  </li>
                     <%end%>
 
