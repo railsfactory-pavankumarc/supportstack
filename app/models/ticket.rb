@@ -19,7 +19,6 @@ class Ticket < ActiveRecord::Base
 	scope :active, ->{ where(active: true) }
     scope :inactive, ->{ where(active: false) }
 	scope :pending, ->{ joins(:status).where('statuses.name =?', 'pending') }
-	scope :open, ->{ joins(:status).where('statuses.name =?', 'open') }
 	scope :waiting, ->{ joins(:status).where('statuses.name =?', 'awaiting for users reply') }
 	scope :closed, ->{ joins(:status).where('statuses.name =?', 'closed') }
 

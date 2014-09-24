@@ -105,7 +105,8 @@
     <%end%>
   </div>
 </div>
-
+<% @role = Role.find_by_name("client") %>
+<%= f.hidden_field :role_id, :value => @role.id%>
  <div class="control-group pull-right">
  <div class="controls">
   <button type="submit" class="btn" name="editUser">Sign up</button>

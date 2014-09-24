@@ -1,6 +1,6 @@
 
 <section class="well well-small mePadd">
-                <h2 class="meFont" style="padding-bottom:30px;"><span class="icon-comment meMarg"></span> Edit profile</h2>
+                <h2 class="meFont" style="padding-bottom:30px;"><span class="icon-comment meMarg"></span> Sign up</h2>
                     <div class="">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "form-actions form-horizontal"}) do |f| %>
 
@@ -72,13 +72,16 @@
   </div>
 </div>
 
+
+<% @role = Role.find_by_name("client") %>
+<%= f.hidden_field :role_id, :value => @role.id%>
  <div class="control-group pull-right">
  <div class="controls">
   <button type="submit" class="btn" name="editUser">Sign up</button>
   
 <% end %>
 </div>
-</section><!--Edit user profile Ends-->
+</section>
 
 
 

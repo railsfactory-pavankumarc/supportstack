@@ -1,11 +1,10 @@
 ActiveAdmin.register Ticket do
 
-  permit_params :subject, :message, :active, :priority_id, :department_id, :status_id, :attachment
+  permit_params :subject, :message, :active, :priority_id, :department_id, :status_id, attachment_attributes: [:attachment]
 
   scope :active
   scope :inactive
   scope :pending
-  scope :open
   scope :waiting
   scope :closed
 
@@ -28,9 +27,9 @@ ActiveAdmin.register Ticket do
       f.input :subject
       f.input :message
   	end
-    #f.inputs "Attachment", for: [:attachment, (f.object.attachment.present? ? f.object.attachment : f.object.build_attachment)] do |s|
-		#s.input :attachment, :as => :file, :hint => s.template.image_tag(s.object.attachment), :label => "attachment"
-	 #end
+    f.inputs "Attachment", for: [:attachment, (f.object.attachment.present? ? f.object.attachment : f.object.build_attachment)] do |s|
+		s.input :attachment, :as => :file, :hint => s.template.image_tag(s.object.attachment), :label => "attachment"
+	 end
     f.actions
   end
 

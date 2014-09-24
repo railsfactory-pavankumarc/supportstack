@@ -1,6 +1,6 @@
 ActiveAdmin.register User, :as => "client" do
 
-  permit_params :first_name, :last_name, :department_id, :role_id, :company_name, :mobile_no, :fax, :email, :password, :password_confirmation, :client
+  permit_params :first_name, :last_name, :department_id, :role_id, :company_name, :mobile_no, :fax, :email, :password, :password_confirmation, :client, attachment_attributes: [:attachment]
 
   scope :active_client
   scope :inactive_client
@@ -28,6 +28,9 @@ ActiveAdmin.register User, :as => "client" do
       f.input :password if f.object.new_record?
       f.input :password_confirmation if f.object.new_record?
     end
+    f.inputs "Attachment", for: [:attachment, (f.object.attachment.present? ? f.object.attachment : f.object.build_attachment)] do |s|
+    s.input :attachment, :as => :file, :hint => s.template.image_tag(s.object.attachment), :label => "attachment"
+   end
     f.actions
   end
   
