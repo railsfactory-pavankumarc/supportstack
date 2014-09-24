@@ -71,7 +71,7 @@ class CommentsController < ApplicationController
 
 
     def comment_params
-      params.require(:comment).permit(:comment,:ticket_id)
+      params.require(:comment).permit(:comment,:ticket_id, attachment_attributes: [:attachment])
     end
 
 end

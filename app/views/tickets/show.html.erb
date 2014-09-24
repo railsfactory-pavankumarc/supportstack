@@ -50,6 +50,9 @@
 			                    </tbody></table>
 			                </div>
 			                <h4 class="alert " style="font-style: italic;">Description: <span class="spnPadding"><%= @tickets.message %></span></h4>
+			                <% if @tickets.attachment.blank? %>
+			                <%#= link_to "Download", @tickets.attachment.attachments.url(:original, false) %>
+			            	<%end%>
 			            </div>
 			     
 			            <hr> <div class=""><h2 class="meFont" style="padding-bottom:30px;"> Conversation:</h2>
@@ -58,9 +61,12 @@
         <%@user = User.find_by_id(@user_id)%>
         <%@role_name = @user.role.name %>
 			            <li class="alert alert-user meUs">
-								<img src="Ticket-Show_files/8735be3fc8240d1d815dc94c47246d49.jpeg" class="img-circle" height="50" width="50">
+								
+								<%= image_tag(@user.attachment ? @user.attachment.attachment : "user.png",class: "img-circle", size: "50x50") %>
+								
+								
 								<span class="tableFont"> User:</span>
-								<span class="tableFont2" style="background-color:transparent;"><%=   @role_name%></span>
+								<span class="tableFont2" style="background-color:transparent;"><%= @role_name%></span>
 								<h6 class="fk">Posted on: <span><%= c.created_at.strftime(" %d/%m/%Y, %H:%M") %></span></h6>
 								<div class="alert alert-user meUser">
 								   <%= c.comment%>.</div>
@@ -81,8 +87,11 @@
 		            
 		            <%= f.text_area :comment, class: "modalTextarea" %>
 		            </div>
+
 		            <div class="modal-footer">
-		            
+		            <%= f.fields_for :attachment_attributes, Attachment.new do |attachment_form| %>
+    				<%= attachment_form.file_field :attachment %>
+    				<%end%>
 		            <%= f.hidden_field :ticket_id, :value => @tickets.id%>
 		            <button class="btn btn-success" type="submit" ><span class="icon-arrow-right icon-white"></span> Send</button>
 		            <button class="btn" data-dismiss="modal" aria-hidden="true"><span class="icon-thumbs-down"></span> Cancel</button>

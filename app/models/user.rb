@@ -5,12 +5,14 @@ class User < ActiveRecord::Base
     after_create :set_role
     
     #accociations
+    has_one :attachment, as: :attachable
     has_many :comment, :as => :commentable
-	has_many :attachments, as: :attachable
 	has_many :tickets
     belongs_to :department
     belongs_to :role
 
+    accepts_nested_attributes_for :attachment, allow_destroy: true
+    
     #validations
     validates :first_name, :mobile_no, presence: true
     validates_presence_of :company_name, :if => Proc.new {|user| user.client}

@@ -1,6 +1,9 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, html: {class: "form-actions form-horizontal"}) do |f| %>
 
 <%= devise_error_messages! %>
+<div class="control-group">
+<%= image_tag(current_user.attachment ? current_user.attachment.attachment : "user.png") %>
+</div>
 
 <div class="control-group">
 <label class="control-label" for="">First Name:</label>
