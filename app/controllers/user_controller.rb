@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-current_user.skip_reconfirmation!
-  ...
+  current_user.skip_reconfirmation!
 
   # GET /users/:id.:format
   def show
