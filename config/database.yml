@@ -6,3 +6,8 @@ development:
   pool: 5
   username: postgres
   password: root
+
+production:
+ adapter: postgresql
+ encoding: unicode
+ database: supportstack

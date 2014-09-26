@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
     TEMP_EMAIL_PREFIX = 'change@me'
     TEMP_EMAIL_REGEX = /\Achange@me/
   
-    devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
+    devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
     attr_accessor :client
    
     
@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
 
             if user.nil?
                 user = User.new(
-                name: auth.extra.raw_info.name,
+                first_name: auth.extra.raw_info.name,
                 #username: auth.info.nickname || auth.uid,
                 email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
                 password: Devise.friendly_token[0,20]

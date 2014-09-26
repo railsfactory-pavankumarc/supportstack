@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+current_user.skip_reconfirmation!
   ...
 
   # GET /users/:id.:format
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      accessible = [:email ] # extend with your own params
+      accessible = [ :first_name, :email ] # extend with your own params
       accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
       params.require(:user).permit(accessible)
     end
