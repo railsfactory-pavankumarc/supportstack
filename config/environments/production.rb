@@ -9,7 +9,7 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
-  config.assets.initialize_on_precompile = false
+  
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
@@ -78,12 +78,14 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
+  config.assets.precompile += %w[active_admin.css active_admin.js]
+  config.assets.initialize_on_precompile = false
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   config.action_mailer.smtp_settings = {
 address: "smtp.gmail.com",
 port: 587,
-domain: 'supportsatck.herokuapp.com' ,
+domain: 'supportstack-pavan.herokuapp.com' ,
 authentication: "plain",
 enable_starttls_auto: true,
 user_name: 'pavankumar@railsfactory.org',
