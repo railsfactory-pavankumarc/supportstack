@@ -190,7 +190,7 @@ Devise.setup do |config|
   # Don't put a too small interval or your users won't have the time to
   # change their passwords.
   config.reset_password_within = 6.hours
-
+  config.secret_key = 'c697e6ab7c4eb56878b75d5bde2da0cb3ffa1d3da683d5e07dafe45a3160335e5145c132487d5607f3e74421a4207c9817f85d90d68be3b18e22a538981b34e0'
   # ==> Configuration for :encryptable
   # Allow you to use another encryption algorithm besides bcrypt (default). You can use
   # :sha1, :sha512 or encryptors from others authentication tools as :clearance_sha1,
