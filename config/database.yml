@@ -11,3 +11,6 @@ production:
  adapter: postgresql
  encoding: unicode
  database: supportstack
+ pool: 5
+ username: postgres
+ password: root
