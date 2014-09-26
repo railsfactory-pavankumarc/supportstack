@@ -6,7 +6,8 @@ class Department < ActiveRecord::Base
 	has_many :news
 
 	#validations
-	validates :name, :description, presence: true
+	validates :name, :presence => { :message => "name cannot be blank" }
+	validates :description, :presence => { :message => "description cannot be blank" }
 
 	#scopes
 	scope :active, ->{ where(active: true) }

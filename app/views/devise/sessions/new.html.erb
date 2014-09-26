@@ -2,7 +2,12 @@
   <h2 class="meFont" style="padding-bottom:30px;"><span class="icon-comment meMarg"></span> Log in</h2>
   <div class="">
 
-
+<% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+        <% end %>
+       <% if alert %>
+         <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-actions form-horizontal"}) do |f| %>
 <%= devise_error_messages! %>

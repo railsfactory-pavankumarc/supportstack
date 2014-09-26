@@ -1,12 +1,12 @@
 class StaffController < ApplicationController
-	
+	before_action :authenticate_user!
 	def index
+    @status = "assigned_tickets"
     @status = params[:status_name]
-  
     @t = []
     @ticket = Ticket.all
     @ticket.each do |s|
-      if s.department_id == current_user.department_id 
+    if s.department_id == current_user.department_id 
         if @status == s.status.name
           @t << s
         elsif @status == "assigned_tickets"
@@ -14,7 +14,23 @@ class StaffController < ApplicationController
         end
       end
     end
-	end
+  end
+
+
+ #    @status = params[:status_name]
+  
+ #    @t = []
+ #    @ticket = Ticket.all
+ #    @ticket.each do |s|
+ #      if s.department_id == current_user.department_id 
+ #        if @status == s.status.name
+ #          @t << s
+ #        elsif @status == "assigned_tickets"
+ #          @t << s
+ #        end
+ #      end
+ #    end
+	# end
 
 	def destroy
     @staff.destroy

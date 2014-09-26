@@ -1,5 +1,5 @@
 class ClientController < ApplicationController
-
+before_action :authenticate_user! 
 	def index
     @clients = User.all
     @tickets = Ticket.where(user_id: current_user.id).all

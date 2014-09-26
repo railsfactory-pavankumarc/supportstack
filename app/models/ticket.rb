@@ -12,8 +12,10 @@ class Ticket < ActiveRecord::Base
 	accepts_nested_attributes_for :attachment, allow_destroy: true
 
 	#validations
-    validates :department, :priority, :subject, :message, presence: true
-
+    validates :department, :presence => { :message => "Please select any department" }
+    validates :priority, :presence => { :message => "Please select priority" }
+    validates :subject, :presence => { :message => "subject cannot be blank" }
+    validates :message, :presence => { :message => "message cannot be blank" }
 
 	#scopes
 	scope :active, ->{ where(active: true) }
