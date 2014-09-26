@@ -16,8 +16,7 @@
 /log/*.log
 /tmp
 
-#Ignore gemlock file
-/Gemfile.lock
+
 
 #Ignore dump file
 /dump.sql
