@@ -20,7 +20,7 @@ before_action :authenticate_user!
           @sid = Status.find_by_name("awaiting for users reply")
           @tc.update_attributes(:status_id => @sid.id)
         end
-        format.html { redirect_to client_index_path }
+        format.html { redirect_to ticket_path(@id) }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }
