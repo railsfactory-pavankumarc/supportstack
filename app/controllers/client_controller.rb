@@ -26,8 +26,8 @@ before_action :authenticate_user!
   def update
       respond_to do |format|
         if @clients.update(ticket_params)
-          format.html { redirect_to @clients
-          
+          format.html { redirect_to @clients}
+         
         end
       end
     end
