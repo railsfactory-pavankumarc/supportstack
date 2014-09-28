@@ -3,12 +3,14 @@ ActiveAdmin.register News do
 	permit_params :title, :description
 
 	index do
-    	selectable_column
-    	column :title
-    	column :description
-    	
-        actions
-  	end
+   	selectable_column
+   	column :title
+  	column :description
+    actions
+  end
+
+
+filter :title
 form do |f|
     f.inputs "News Details" do
       f.input :title

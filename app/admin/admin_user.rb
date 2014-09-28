@@ -3,7 +3,7 @@ ActiveAdmin.register AdminUser, :as => "ADMIN" do
 permit_params :email, :password, :password_confirmation, :full_name, :username, :phone, :mobile
 config.clear_action_items!
 actions :all, :except => :destroy
-
+config.filters = false
   index do
     selectable_column
     column :full_name
@@ -14,10 +14,6 @@ actions :all, :except => :destroy
     actions
   end
 
-  
-  filter :current_sign_in_at
-  filter :sign_in_count
-  filter :created_at
 
   form do |f|
     f.inputs "Admin Details" do

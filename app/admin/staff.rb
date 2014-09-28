@@ -14,7 +14,9 @@ ActiveAdmin.register User, :as => "staff" do
     column :email
     actions
   end
-
+  
+  filter :department
+  
   form do |f|
     f.inputs "Staff Details" do
       f.input :first_name

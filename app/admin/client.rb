@@ -13,7 +13,7 @@ ActiveAdmin.register User, :as => "client" do
     column :email
     actions
   end
-
+  filter :company_name
 
   form do |f|
     f.inputs "Client Details" do

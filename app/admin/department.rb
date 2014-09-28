@@ -13,6 +13,8 @@ ActiveAdmin.register Department do
     	end
     end
 
+    filter :name
+    
     index do
     	selectable_column
     	column :name

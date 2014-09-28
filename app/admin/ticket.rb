@@ -19,6 +19,8 @@ ActiveAdmin.register Ticket do
     actions
   end
 
+  filter :department
+
   form do |f|
     f.inputs "Ticket Details" do
       f.input :department, prompt: "Select department"
@@ -52,6 +54,4 @@ ActiveAdmin.register Ticket do
       redirect_to "/admin/tickets"
     end
   end
-
-
 end
