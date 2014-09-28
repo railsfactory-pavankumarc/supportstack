@@ -2,7 +2,7 @@ class Attachment < ActiveRecord::Base
 	belongs_to :attachable, polymorphic: true
 
 has_attached_file :attachment, 
-		:styles => { :medium => "300x300>", :thumb => "100x100>", :mini => "100x100>" },
+		:styles => { :medium => "300x300>", :thumb => "100x100>", :mini => "50x50>" },
 		:default_url => "/images/Dummy.jpg", 
 		:s3_permissions => :public_read,
 		:storage => :s3,
