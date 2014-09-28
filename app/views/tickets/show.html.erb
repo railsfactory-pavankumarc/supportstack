@@ -52,29 +52,29 @@
 			                <h4 class="alert " style="font-style: italic;">Description: <span class="spnPadding"><%= @tickets.message %></span></h4>
 			                <% if @tickets.attachment.blank? %>
 			                <% else %>
-			                <%= link_to "Click here to download the attachment", @tickets.attachment.attachment.url(:original, false) %>
+			                <%= link_to "Click here to view the document", @tickets.attachment.attachment.url(:original, false) %>
 			            	<%end%>
 			            </div>
 			     
 			            <hr> <div class=""><h2 class="meFont" style="padding-bottom:30px;"> Conversation:</h2>
 			            <% @comments.each do |c|%>
 			            <% @user_id = c.user_id %>   
-        <%@user = User.find_by_id(@user_id)%>
-        <%@role_name = @user.role.name %>
+        					<%@user = User.find_by_id(@user_id)%>
+        					<%@role_name = @user.role.name %>
 			            <li class="alert alert-user meUs">
 								
 								<%= image_tag(@user.attachment ? @user.attachment.attachment : "user.png",class: "img-circle", size: "50x50") %>
 								
 								
-								<span class="tableFont"> User:</span>
-								<span class="tableFont2" style="background-color:transparent;"><%= @role_name%></span>
+								<span class="tableFont"> <%= @role_name.upcase%>:</span>
+								<span class="tableFont2" style="background-color:transparent;"><%= @user.first_name%></span>
 								<h6 class="fk">Posted on: <span><%= c.created_at.strftime(" %d/%m/%Y, %H:%M") %></span></h6>
 								<div class="alert alert-user meUser">
 								   <%= c.comment%>.</div>
 								   <% if c.attachment.blank? %>
 
 			                <% else %>
-			                <%= link_to "Click here to download the attachment", c.attachment.attachment.url(:original, false) %>
+			                <%= link_to "Click here to view the document", c.attachment.attachment.url(:original, false) %>
 			            	<%end%>
                      		  </li>
                     <%end%>
