@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
     validates :first_name, :presence => { :message => "cannot be blank" }
     validates :mobile_no, :presence => { :message => "cannot be blank" }
     validates_presence_of :company_name, :if => Proc.new {|user| user.client}, :message => "company name cannot be empty" 
-    #validates_presence_of :department_id, :if => Proc.new {|user| !user.client}, :message => "Please select any department" 
     validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
     #scopes																																																																																																																																																																																												

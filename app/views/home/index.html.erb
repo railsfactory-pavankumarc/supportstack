@@ -32,7 +32,12 @@
 <div class="col-xs-4">
   
 
-     
+     <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+        <% end %>
+       <% if alert %>
+         <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
 
 <section class="well well-small mePadd">
                <h3> <center>  Sign Up</center></h3>

@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     end
    
     def client_ticket_count
-      @tickets = Ticket.where(user_id: current_user.id).all
+      @tickets = Ticket.where(user_id: current_user.id)
       @tickets.count
     end
 

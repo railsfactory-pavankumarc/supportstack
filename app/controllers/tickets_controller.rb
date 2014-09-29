@@ -20,15 +20,14 @@ class TicketsController < ApplicationController
     	respond_to do |format|
     	if @tickets.save
         	format.html { redirect_to @tickets, notice: 'Ticket was successfully created.' }
-        	format.json { render :show, status: :created, location: @tickets }
+        	
       	else
         	format.html { render :new }
-        	format.json { render json: @tickets.errors, status: :unprocessable_entity }
       	end
     	end
 	end
   def show
-    @comments = Comment.where(:ticket_id => params[:id]).all
+    @comments = Comment.where(:ticket_id => params[:id])
 
   end
 
@@ -48,8 +47,6 @@ class TicketsController < ApplicationController
       format.html { redirect_to @tickets, notice: 'Ticket was successfully updated.' }   
     end
   end
-
-
 
   	private
   

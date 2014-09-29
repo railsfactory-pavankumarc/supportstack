@@ -21,10 +21,10 @@ before_action :authenticate_user!
           @tc.update_attributes(:status_id => @sid.id)
         end
         format.html { redirect_to ticket_path(@id) }
-        format.json { render :show, status: :created, location: @comment }
+       
       else
         format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      
       end
     end
   end
