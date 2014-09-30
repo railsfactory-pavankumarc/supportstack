@@ -1,9 +1,8 @@
 class ClientController < ApplicationController
 before_action :authenticate_user! 
-	def index
-    
+	
+  def index
     @tickets = Ticket.where(user_id: current_user.id)
-   
   end
 
 
@@ -13,24 +12,18 @@ before_action :authenticate_user!
 
   def create
     @clients = User.new(ticket_params)
-
-      respond_to do |format|
+    respond_to do |format|
       if @clients.save
           format.html { redirect_to @clients }
-          
-        
-        end
       end
+    end
   end
 
   def update
-      respond_to do |format|
-        if @clients.update(ticket_params)
-          format.html { redirect_to @clients}
-         
-        end
+    respond_to do |format|
+      if @clients.update(ticket_params)
+        format.html { redirect_to @clients}
       end
     end
-
-
+  end
 end

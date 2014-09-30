@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
     scope :inactive_staff, ->{ inactive.staff }
     scope :inactive_client, ->{ inactive.client }
 
+
+
+    
+
     def self.find_for_oauth(auth, signed_in_resource = nil)
 
         identity = Identity.find_for_oauth(auth)

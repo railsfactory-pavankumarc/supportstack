@@ -27,5 +27,15 @@ class Ticket < ActiveRecord::Base
     def set_status
         @status = Status.find_by(name: "pending")
         self.update_attributes(status_id: @status.id)
-     end
+    end
+
+    def update_status(tid,ticket)
+    	if (ticket.status.name == "pending") || (ticket.status.name == "awaiting for users reply")
+      		@sid = Status.find_by_name("closed")
+      		ticket.update_attributes(:status_id => @sid.id)
+    	elsif (ticket.status.name == "closed")
+      		@sid = Status.find_by_name("pending")
+      		ticket.update_attributes(:status_id => @sid.id)
+    	end
+    end
 end

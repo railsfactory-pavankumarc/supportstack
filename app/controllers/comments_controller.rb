@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-before_action :authenticate_user!
+  before_action :authenticate_user!
 	before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -7,24 +7,16 @@ before_action :authenticate_user!
   end
 
   def create
-     @comment = Comment.new(comment_params)
-     @comment.user_id = current_user.id
-
+    @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
+    
     respond_to do |format|
       if @comment.save
-        @id = @comment.ticket_id
-        @tc = Ticket.find_by_id(@id)
-        if @tc.status.name == "closed"
+        @comment.update_status(@comment) 
 
-        else
-          @sid = Status.find_by_name("awaiting for users reply")
-          @tc.update_attributes(:status_id => @sid.id)
-        end
-        format.html { redirect_to ticket_path(@id) }
-       
+        format.html { redirect_to ticket_path(@comment.ticket_id) }
       else
         format.html { render :new }
-      
       end
     end
   end
