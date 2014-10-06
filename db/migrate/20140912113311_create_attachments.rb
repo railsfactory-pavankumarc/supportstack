@@ -4,7 +4,6 @@ class CreateAttachments < ActiveRecord::Migration
         t.has_attached_file :attachment
         t.references :attachable, polymorphic: true
         t.timestamps
-
     end
   end
 end

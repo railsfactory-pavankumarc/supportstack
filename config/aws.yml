@@ -2,11 +2,13 @@ development:
   access_key_id: AKIAIDLMKSIVWOZKS5GA
   secret_access_key: 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
   bucket:  supportstacktest
-  
 
-  
 production:
   access_key_id: AKIAIDLMKSIVWOZKS5GA
   secret_access_key: 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
   bucket:  supportstack
 
+test:
+  access_key_id: AKIAIDLMKSIVWOZKS5GA
+  secret_access_key: 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
+  bucket:  supportstacktest

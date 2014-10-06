@@ -14,3 +14,13 @@ production:
  pool: 5
  username: postgres
  password: root
+
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: supportstack
+  pool: 5
+  username: postgres
+  password: root
