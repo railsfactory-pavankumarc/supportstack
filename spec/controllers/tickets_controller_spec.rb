@@ -1,52 +1,75 @@
 require "rails_helper"
- 
+
 RSpec.describe TicketsController, :type => :controller do
+   include Devise::TestHelpers
+   
+   let(:user) { FactoryGirl.create(:user, :client) }
+   let(:current_user) {sign_in user}
+   let(:ticket) { FactoryGirl.create(:ticket, :ticket1) }
    
     before(:each) do
       controller.stub(:authenticate_user!).and_return(true)
-    @ticket = Ticket.create!(department_id: 1, priority_id: 1, subject: "issue", message: "issue description")
-    @tickets = Ticket.all
-    # user = FactoryGirl.build(:user)
-    # user.password = "123456"
-    # user.save
-    # post :login, {:email => user.email, :password => "123456"}
+      @tickets = Ticket.all
     end
 
 
-   describe "GET #index" do
-     it "responds successfully with an HTTP 200 status code" do
-       get :index
-         expect(response).to be_success
-         assigns(:tickets).should eq(@tickets)
-         expect(response).to have_http_status(200)
-     end
+    describe "GET #index" do
+      it "responds successfully with an HTTP 200 status code" do
+        get :index
+          expect(response).to be_success
+          assigns(:tickets).should eq(@tickets)
+          expect(response).to have_http_status(200)
+      end
 
-     it "renders the index template" do
-       get :index
-         expect(response).to render_template("index")
-     end 
+      it "renders the index template" do
+        get :index
+          expect(response).to render_template("index")
+      end 
    end 
 
-   describe "GET #show" do
-    it "renders the show template" do
-       get :show, id: @ticket
-       expect(response).to render_template("show")
-    end
-   end
+   
 
-   describe "GET #new" do
+  describe "GET #new" do
     it "renders the new template" do
       get :new
       expect(response).to render_template("new")
       expect(response).to have_http_status(200)
-     end
+    end
   end
 
-  # describe "POST #create" do
-  #   it "it creates the new blog" do
-  #    post :create
-  #    expect(response).to render_template("show")
-  #   end
-  # end
-end
+  describe "GET #show" do
+    it "renders the show template" do
+        ticket
+       get :show, id: ticket
+       expect(response).to render_template("show")
+    end
+  end
 
+  describe "POST #create" do
+    it "should create a ticket" do
+      current_user
+      ticket.id = user.id 
+      post :create, ticket: FactoryGirl.attributes_for(:ticket,:ticket1)
+     
+      expect(response).to have_http_status(302)
+    end
+  end
+
+  describe "routing" do
+    it "routes to #index" do
+      get :index, use_route: "tickets#index"
+    end
+
+    it "routes to #new" do
+      get :new, use_route: "tickets#new"
+    end
+
+    it "routes to #create" do
+      expect(:post => tickets_path ).to route_to(:controller => "tickets", :action => "create")
+    end
+
+    it "routes to #update" do
+      patch :update, :id => 1, use_route: "tickets#update"
+    end
+  end
+end

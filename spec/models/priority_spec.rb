@@ -11,16 +11,3 @@ RSpec.describe Priority, :type => :model do
    	end
 end
 
-
-# describe Priority do
-  
-# 	before(:each) do
-# 		@priority = Priority.new()
-# 	end
-	
-# 	# Accessible attributes
-# 	it "should make priority attr_accessible fields" do
-#     Priority.should_receive(:attr_accessible).with(:id, :name)
-#     load "#{Rails.root}/app/models/priority.rb"
-#   end
-# end
