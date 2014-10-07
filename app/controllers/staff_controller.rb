@@ -13,11 +13,4 @@ class StaffController < ApplicationController
       end
     end
   end
-
-	def destroy
-    @staff.destroy
-    respond_to do |format|
-      format.html { redirect_to new_user_session_path, notice: 'staff was successfully destroyed.' }
-    end
-  end
 end
