@@ -4,12 +4,10 @@ Rails.application.routes.draw do
   devise_for :users
   #devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 
-  resources :departments
-  resources :users
   resources :tickets
-  resources :staff
-  resources :client
-  resources :comments
+  resources :staff, :only => [:index]
+  resources :client, :only => [:index]
+  resources :comments, :only => [:create]
   root 'home#index'
   get 'news/index'
   

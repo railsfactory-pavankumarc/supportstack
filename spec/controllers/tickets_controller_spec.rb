@@ -57,12 +57,16 @@ RSpec.describe TicketsController, :type => :controller do
   end
 
   
-  #update 
-  describe "PUT #update" do
-    it "should update the ticket" do
-      current_user
-      post :create, ticket: FactoryGirl.attributes_for(:ticket,:ticket1)
-
+  # #update 
+  # describe "PUT #update" do
+  #   it "should update the ticket" do
+  #     current_user
+  #     @last_ticket =  FactoryGirl.create(:ticket,:ticket2)
+  #     patch :update, :id => @last_ticket, ticket: {:subject => "subject"}
+  #     @last_ticket.reload
+  #     expect(@last_ticket.subject).to eq("subject")
+  #     end
+  #   end
 
   #Routing
   describe "routing" do
