@@ -1,34 +1,33 @@
 require "rails_helper"
 
 RSpec.describe TicketsController, :type => :controller do
-   include Devise::TestHelpers
+  include Devise::TestHelpers
    
-   let(:user) { FactoryGirl.create(:user, :client) }
-   let(:current_user) {sign_in user}
-   let(:ticket) { FactoryGirl.create(:ticket, :ticket1) }
+  let(:user) { FactoryGirl.create(:user, :client) }
+  let(:current_user) {sign_in user}
+  let(:ticket) { FactoryGirl.create(:ticket, :ticket1) }
    
-    before(:each) do
-      controller.stub(:authenticate_user!).and_return(true)
-      @tickets = Ticket.all
+  before(:each) do
+    controller.stub(:authenticate_user!).and_return(true)
+    @tickets = Ticket.all
+  end
+
+  #index
+  describe "GET #index" do
+    it "responds successfully with an HTTP 200 status code" do
+      get :index
+      expect(response).to be_success
+      assigns(:tickets).should eq(@tickets)
+      expect(response).to have_http_status(200)
     end
 
-
-    describe "GET #index" do
-      it "responds successfully with an HTTP 200 status code" do
-        get :index
-          expect(response).to be_success
-          assigns(:tickets).should eq(@tickets)
-          expect(response).to have_http_status(200)
-      end
-
-      it "renders the index template" do
-        get :index
-          expect(response).to render_template("index")
-      end 
-   end 
-
-   
-
+    it "renders the index template" do
+      get :index
+      expect(response).to render_template("index")
+    end 
+  end 
+  
+  #new
   describe "GET #new" do
     it "renders the new template" do
       get :new
@@ -37,6 +36,7 @@ RSpec.describe TicketsController, :type => :controller do
     end
   end
 
+  #show
   describe "GET #show" do
     it "renders the show template" do
         ticket
@@ -45,16 +45,26 @@ RSpec.describe TicketsController, :type => :controller do
     end
   end
 
+  
+  #create
   describe "POST #create" do
     it "should create a ticket" do
       current_user
       ticket.id = user.id 
       post :create, ticket: FactoryGirl.attributes_for(:ticket,:ticket1)
-     
       expect(response).to have_http_status(302)
     end
   end
 
+  
+  #update 
+  describe "PUT #update" do
+    it "should update the ticket" do
+      current_user
+      post :create, ticket: FactoryGirl.attributes_for(:ticket,:ticket1)
+
+
+  #Routing
   describe "routing" do
     it "routes to #index" do
       get :index, use_route: "tickets#index"
