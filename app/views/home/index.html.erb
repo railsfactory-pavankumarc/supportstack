@@ -103,7 +103,7 @@
 </div>
 
 <div class="control-group ">
-  <label class="control-label" for="">Attachment</label>
+  <label class="control-label" for="">Photo:</label>
   <div class="controls">
     <%= f.fields_for :attachment_attributes, Attachment.new do |attachment_form| %>
     <%= attachment_form.file_field :attachment %>
